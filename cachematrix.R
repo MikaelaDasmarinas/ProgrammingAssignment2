@@ -6,20 +6,20 @@
 ## object that can cache its inverse.
 ## makeCacheMatrix creates a special "matrix", that is a list containing a function
 ## to
-## "set the value of the matrix"
-## "get the value of the matrix"
-## "set the value of the inverse"
-## "get the value of the inverse"
+## "**set the value of the matrix"
+## "**get the value of the matrix"
+## "**set the value of the inverse"
+## "**get the value of the inverse"
 
-makeCacheMatrix <- function(x = matrix()) {
-  inv <- NULL
+makeCacheMatrix <- function(zz_input = matrix()) {
+  ww_nvi <- NULL
   set <- function(y) {
-    x <<- y
-    inv <<- NULL
+    zz_input <<- y
+    ww_nvi <<- NULL
   }
-  get <- function() {x}
-  setinv <- function(inverse) {inv <<- inverse}
-  getinv <- function() {inv}
+  get <- function() {zz_input}
+  setinv <- function(inverse) {ww_nvi <<- inverse}
+  getinv <- function() {ww_nvi}
   list(set = set, get = get,
        setinv = setinv,
        getinv = getinv)
@@ -31,15 +31,15 @@ makeCacheMatrix <- function(x = matrix()) {
 ## If not, the inverse will be calculated and makes the computed inverse
 ## as the value of the inverse in the cache by means of the setinverse function.
 
-cacheSolve <- function(x, ...) {
-  ## Returns a matrix that is the inverse of 'x'
-  inv <- x$getinv()
-  if(!is.null(inv)) {
+cacheSolve <- function(zz_input, ...) {
+  ## Returns a matrix that is the inverse of 'zz_input'
+  ww_nvi <- x$getinv()
+  if(!is.null(ww_nvi)) {
     message("getting cached data")
-    return(inv)
+    return(ww_nvi)
   }
   data <- x$get()
-  inv <- solve(data)
-  x$setinv(inv)
-  inv
+  ww_nvi <- solve(data)
+  x$setinv(ww_nvi)
+  ww_nvi
 }
